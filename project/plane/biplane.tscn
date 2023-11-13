@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu73yn45j040t"]
+
+[ext_resource type="Script" path="res://plane/new_biplane.gd" id="1_nhn8v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dxt4t"]
+
+[node name="Biplane" type="CharacterBody3D"]
+script = ExtResource("1_nhn8v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dxt4t")
+
+[node name="Camera3D" type="Camera3D" parent="."]
