@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://1eyl0qyoc8ly"]
+[gd_scene load_steps=7 format=3 uid="uid://1eyl0qyoc8ly"]
 
 [ext_resource type="PackedScene" uid="uid://bu73yn45j040t" path="res://plane/biplane.tscn" id="1_oymg5"]
+[ext_resource type="PackedScene" uid="uid://bttnt1jcweusq" path="res://plane_display.tscn" id="2_gtay3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3tnos"]
 
@@ -12,16 +13,18 @@ background_mode = 2
 sky = SubResource("Sky_akjvd")
 
 [sub_resource type="BoxMesh" id="BoxMesh_5dlkp"]
-size = Vector3(10000, 0.1, 10000)
+size = Vector3(1000, 0.1, 1000)
 
 [node name="Main" type="Node3D"]
 
 [node name="Biplane" parent="." instance=ExtResource("1_oymg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -364.959, 502.337)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 400, 502.337)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wpaia")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -448.616, 0)
 mesh = SubResource("BoxMesh_5dlkp")
+
+[node name="PlaneDisplay" parent="." node_paths=PackedStringArray("plane") instance=ExtResource("2_gtay3")]
+plane = NodePath("../Biplane")
