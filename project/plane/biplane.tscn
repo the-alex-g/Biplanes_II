@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bu73yn45j040t"]
 
-[ext_resource type="Script" path="res://plane/new_biplane.gd" id="1_nhn8v"]
+[ext_resource type="Script" path="res://plane/biplane.gd" id="1_nhn8v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dxt4t"]
 
