@@ -1,13 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu73yn45j040t"]
+[gd_scene load_steps=7 format=3 uid="uid://bu73yn45j040t"]
 
 [ext_resource type="Script" path="res://plane/biplane.gd" id="1_nhn8v"]
+[ext_resource type="ArrayMesh" uid="uid://dybbteaqlpcsl" path="res://plane/Biplane.obj" id="2_3d0us"]
+[ext_resource type="Material" uid="uid://kok4miyt12ps" path="res://plane/metal_material.tres" id="3_lxlua"]
+[ext_resource type="PackedScene" uid="uid://dlw40tgo686yg" path="res://plane/firing_area.tscn" id="4_fh2ls"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dm4nn"]
+material = ExtResource("3_lxlua")
+size = Vector3(1, 0.25, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dxt4t"]
+size = Vector3(2, 2, 8)
 
 [node name="Biplane" type="CharacterBody3D"]
 script = ExtResource("1_nhn8v")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 1)
+mesh = ExtResource("2_3d0us")
+
+[node name="GunMesh" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.52153, 1.12302, 1.53931e-07)
+mesh = SubResource("BoxMesh_dm4nn")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 shape = SubResource("BoxShape3D_dxt4t")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56, -2)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FiringArea" parent="." instance=ExtResource("4_fh2ls")]
+damage = 6.0

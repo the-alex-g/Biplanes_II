@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlw40tgo686yg"]
+
+[ext_resource type="Script" path="res://plane/firing_area.gd" id="1_cqo20"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5k40e"]
+radius = 1.0
+
+[node name="FiringArea" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+script = ExtResource("1_cqo20")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_5k40e")
