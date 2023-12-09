@@ -1,32 +1,23 @@
 class_name Biplane
 extends CharacterBody3D
 
-const AXIS_DAMPER := 0.1
 const LENGTH := 7.0 # meters
 const MESH_LENGTH := 0.0 # units
 
 @export var player_index := 0
+@export var turn_speed := TAU / 4
 @export_group("Controls")
-@export var thrust_axis := JOY_AXIS_TRIGGER_RIGHT
-@export var yaw_axis := JOY_AXIS_LEFT_X
-@export var pitch_axis := JOY_AXIS_RIGHT_Y
+@export var controls := PlaneControls.new()
 
 var physics := PlanePhysics.new()
 
 
+func _ready()->void:
+	controls.player_index = player_index
+
+
 func _physics_process(delta:float)->void:
-	rotate_y(_get_axis_strength(yaw_axis, true) * delta * TAU / 4)
-	rotate_object_local(Vector3.RIGHT, _get_axis_strength(pitch_axis) * delta * TAU / 4)
+	rotate_y(controls.get_yaw_axis() * delta * turn_speed)
+	rotate_object_local(Vector3.RIGHT, controls.get_pitch_axis() * delta * turn_speed)
 	
-	move_and_collide(physics.calculate_velocity(global_basis, _get_axis_strength(thrust_axis), delta))
-
-
-func _get_axis_strength(axis:JoyAxis, invert := false, dampen := true)->float:
-	var axis_strength := Input.get_joy_axis(player_index, axis)
-	if invert:
-		axis_strength *= -1
-	if dampen:
-		if abs(axis_strength) > AXIS_DAMPER:
-			return axis_strength
-		return 0.0
-	return axis_strength
+	var _collision := move_and_collide(physics.calculate_velocity(global_basis, controls.get_thrust_axis(), delta))
