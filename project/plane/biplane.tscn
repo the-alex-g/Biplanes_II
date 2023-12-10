@@ -30,8 +30,7 @@ shape = SubResource("BoxShape3D_dxt4t")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56, -2)
 
+[node name="FiringArea" parent="." instance=ExtResource("4_fh2ls")]
+
 [node name="CooldownTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="FiringArea" parent="." instance=ExtResource("4_fh2ls")]
-damage = 6.0

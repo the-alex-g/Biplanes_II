@@ -7,8 +7,28 @@ const MASS := 700.0
 @export var max_forward_velocity := 45.0
 @export var min_forward_velocity := 25.0
 @export var max_forward_accel := 8.0
+@export var max_turn_velocity := TAU / 4
+@export var max_turn_accel := 1.0
 
 var forward_velocity := 0.0
+var yaw_velocity := 0.0
+var pitch_velocity := 0.0
+
+
+func calculate_yaw_velocity(yaw:float, delta:float)->float:
+	if yaw == 0.0 and abs(yaw_velocity) > 0.0:
+		yaw_velocity -= max_turn_accel * delta * sign(yaw_velocity)
+	elif abs(yaw_velocity) < max_turn_velocity:
+		yaw_velocity += max_turn_accel * delta * yaw
+	return yaw_velocity * delta
+
+
+func calculate_pitch_velocity(pitch:float, delta:float)->float:
+	if pitch == 0.0 and abs(pitch_velocity) > 0.0:
+		pitch_velocity -= max_turn_accel * delta * sign(pitch_velocity)
+	elif abs(pitch_velocity) < max_turn_velocity:
+		pitch_velocity += max_turn_accel * delta * pitch
+	return pitch_velocity * delta
 
 
 func calculate_velocity(basis:Basis, thrust:float, delta:float)->Vector3:

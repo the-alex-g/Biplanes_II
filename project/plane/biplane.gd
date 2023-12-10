@@ -6,7 +6,6 @@ const MESH_LENGTH := 10.0 # units
 
 @export var player_index := 0
 @export var health := 6.0
-@export var turn_speed := TAU / 4
 @export var cooldown_time := 0.5
 @export_group("Controls")
 @export var controls := PlaneControls.new()
@@ -23,8 +22,8 @@ func _ready()->void:
 
 
 func _physics_process(delta:float)->void:
-	rotate_y(controls.get_yaw_axis() * delta * turn_speed)
-	rotate_object_local(Vector3.RIGHT, controls.get_pitch_axis() * delta * turn_speed)
+	rotate_y(physics.calculate_yaw_velocity(controls.get_yaw_axis(), delta))
+	rotate_object_local(Vector3.RIGHT, physics.calculate_pitch_velocity(controls.get_pitch_axis(), delta))
 	
 	if controls.is_shoot_button_pressed() and _can_shoot:
 		_shoot()
