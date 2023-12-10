@@ -4,7 +4,7 @@ extends CharacterBody3D
 const LENGTH := 7.0 # meters
 const MESH_LENGTH := 10.0 # units
 
-@export var player_index := 0
+@export var player_index := 0 : set = _set_player_index
 @export var health := 6.0
 @export var cooldown_time := 0.5
 @export_group("Controls")
@@ -56,3 +56,8 @@ func destroy(destroyer:int)->void:
 func _resolve_collision(collision:KinematicCollision3D)->void:
 	if collision != null:
 		destroy(-1)
+
+
+func _set_player_index(value:int)->void:
+	player_index = value
+	controls.player_index = player_index

@@ -23,7 +23,7 @@ _surfaces = [{
 albedo_color = Color(0.133333, 0.545098, 0.133333, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kk6wl"]
-seed = -1895424053
+seed = 1983907063
 
 [node name="Ground" type="MeshInstance3D"]
 mesh = SubResource("ArrayMesh_dnut6")

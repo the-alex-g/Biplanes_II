@@ -1,3 +1,4 @@
+class_name PlaneDisplay
 extends Control
 
 @export var plane : Biplane
