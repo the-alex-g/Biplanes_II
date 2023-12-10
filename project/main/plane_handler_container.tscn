@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://1po6ivkq1sc1"]
+[gd_scene load_steps=3 format=3 uid="uid://1po6ivkq1sc1"]
 
 [ext_resource type="Script" path="res://main/plane_handler_container.gd" id="1_ijbve"]
+[ext_resource type="Theme" uid="uid://do13ffs3f2ld6" path="res://theme.tres" id="1_j21g4"]
 
 [node name="PlaneHandlerContainer" type="GridContainer"]
 anchors_preset = 15
@@ -8,4 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_j21g4")
+columns = 2
 script = ExtResource("1_ijbve")

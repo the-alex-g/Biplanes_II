@@ -1,6 +1,8 @@
 class_name Biplane
 extends CharacterBody3D
 
+signal destroyed(destroyer_index)
+
 const LENGTH := 7.0 # meters
 const MESH_LENGTH := 10.0 # units
 
@@ -12,6 +14,7 @@ const MESH_LENGTH := 10.0 # units
 
 var physics := PlanePhysics.new()
 var _can_shoot := true
+var disabled := false
 
 @onready var _cooldown_timer : Timer = $CooldownTimer
 @onready var _firing_area : FiringArea = $FiringArea
@@ -22,6 +25,9 @@ func _ready()->void:
 
 
 func _physics_process(delta:float)->void:
+	if disabled:
+		return
+	
 	rotate_y(physics.calculate_yaw_velocity(controls.get_yaw_axis(), delta))
 	rotate_object_local(Vector3.RIGHT, physics.calculate_pitch_velocity(controls.get_pitch_axis(), delta))
 	
@@ -50,7 +56,11 @@ func damage(amount:float, damager:int)->void:
 
 
 func destroy(destroyer:int)->void:
+	if disabled:
+		return
+	
 	print("Biplane ", player_index, " was destroyed by Biplane ", destroyer, "!")
+	destroyed.emit(destroyer)
 
 
 func _resolve_collision(collision:KinematicCollision3D)->void:

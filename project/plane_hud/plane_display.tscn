@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bttnt1jcweusq"]
 
-[ext_resource type="Script" path="res://plane_display.gd" id="1_nnveu"]
+[ext_resource type="Script" path="res://plane_hud/plane_display.gd" id="1_nnveu"]
 
 [node name="PlaneDisplay" type="Control"]
 layout_mode = 3
