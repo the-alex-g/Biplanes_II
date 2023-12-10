@@ -27,4 +27,4 @@ func _add_plane_handler(player_index:int, color:Color)->void:
 
 func _on_plane_handler_plane_destroyed(destroyer_index:int, destroyed_plane_index:int)->void:
 	if destroyer_index != -1:
-		_plane_handlers[destroyer_index].log_kill(destroyed_plane_index)
+		_plane_handlers[destroyer_index].log_kill(_plane_handlers[destroyed_plane_index].color)

@@ -2,13 +2,13 @@ class_name PlaneWreck
 extends CharacterBody3D
 
 const GRAVITY := 9.81
-const VELOCITY := 30.0
 
 var color : Color
 var direction : Vector3
 var on_fire_progress := 0.0
 var is_on_fire := false
 var exploding_progress := 0.0
+var wreck_velocity := 0.0
 
 @onready var _spin_speed_factor := (randf() - 0.5) * TAU / 6
 @onready var _spin := _get_spin_vector()
@@ -23,8 +23,8 @@ func _ready()->void:
 
 func _physics_process(delta:float)->void:
 	_mesh.rotation += _spin * _spin_speed_factor * delta
-	var movement_vector := direction * VELOCITY
-	movement_vector.y = -GRAVITY - min(movement_vector.y, 0.0)
+	var movement_vector := direction * wreck_velocity
+	movement_vector.y = -GRAVITY + min(movement_vector.y, 0.0)
 	var collision := move_and_collide(movement_vector * delta)
 	_resolve_collision(collision)
 	_process_fire()

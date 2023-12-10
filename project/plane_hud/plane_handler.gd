@@ -17,6 +17,7 @@ var _plane_upgrader := PlaneUpgrader.new()
 
 @onready var _plane : Biplane = $SubViewportContainer/SubViewport/Biplane
 @onready var _upgrade_interface : PlaneUpgradeInterface = $PlaneUpgradeInterface
+@onready var _plane_display : PlaneDisplay = $PlaneDisplay
 
 
 func _ready()->void:
@@ -43,12 +44,13 @@ func _get_spawn_position()->Vector3:
 	)
 
 
-func log_kill(destroyed_plane_index:int)->void:
-	if _kills.has(destroyed_plane_index):
-		_kills[destroyed_plane_index] += 1
+func log_kill(destroyed_plane_color:Color)->void:
+	if _kills.has(destroyed_plane_color):
+		_kills[destroyed_plane_color] += 1
 	else:
-		_kills[destroyed_plane_index] = 1
+		_kills[destroyed_plane_color] = 1
 	_kills_this_flight += 1
+	_plane_display.update_kills(_kills)
 
 
 func _on_biplane_destroyed(destroyer_index:int)->void:
@@ -64,6 +66,7 @@ func _create_plane_wreck(transform:Transform3D)->void:
 	wreck.global_transform = transform
 	wreck.direction = _plane.physics.get_forward_vector(transform)
 	wreck.color = color
+	wreck.wreck_velocity = _plane.physics.forward_velocity
 	add_child(wreck)
 
 
