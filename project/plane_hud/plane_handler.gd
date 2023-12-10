@@ -53,9 +53,18 @@ func log_kill(destroyed_plane_index:int)->void:
 
 func _on_biplane_destroyed(destroyer_index:int)->void:
 	plane_destroyed.emit(destroyer_index)
+	_create_plane_wreck(_plane.global_transform)
 	_plane.disabled = true
 	_plane.global_position = OFF_BOARD_POSITION
 	_upgrade_interface.open(_kills_this_flight)
+
+
+func _create_plane_wreck(transform:Transform3D)->void:
+	var wreck : PlaneWreck = load("res://plane/plane_wreck.tscn").instantiate()
+	wreck.global_transform = transform
+	wreck.direction = _plane.physics.get_forward_vector(transform)
+	wreck.color = color
+	add_child(wreck)
 
 
 func _on_plane_upgrade_interface_launched()->void:

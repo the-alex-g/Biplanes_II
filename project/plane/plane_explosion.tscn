@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://5eg1ytvjdu0r"]
+
+[ext_resource type="Shader" path="res://plane/plane_explosion.gdshader" id="1_rm5tg"]
+[ext_resource type="Script" path="res://plane/plane_explosion.gd" id="2_mm7i8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcjr8"]
+render_priority = 0
+shader = ExtResource("1_rm5tg")
+
+[sub_resource type="BoxMesh" id="BoxMesh_vxs7u"]
+material = SubResource("ShaderMaterial_rcjr8")
+
+[node name="PlaneExplosion" type="CPUParticles3D"]
+emitting = false
+amount = 64
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.5
+lifetime_randomness = 0.5
+mesh = SubResource("BoxMesh_vxs7u")
+emission_shape = 2
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+script = ExtResource("2_mm7i8")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

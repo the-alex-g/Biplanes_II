@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://d20gdgvkemudw"]
+
+[ext_resource type="ArrayMesh" uid="uid://dybbteaqlpcsl" path="res://plane/Biplane.obj" id="1_06u3p"]
+[ext_resource type="Script" path="res://plane/plane_wreck.gd" id="1_wc6uk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_47jtc"]
+size = Vector3(2, 2, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt178"]
+albedo_color = Color(0.231373, 0.231373, 0.231373, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a7mwo"]
+material = SubResource("StandardMaterial3D_nt178")
+
+[node name="PlaneWreck" type="CharacterBody3D"]
+script = ExtResource("1_wc6uk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 1)
+mesh = ExtResource("1_06u3p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+shape = SubResource("BoxShape3D_47jtc")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 32
+mesh = SubResource("BoxMesh_a7mwo")
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 1)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0

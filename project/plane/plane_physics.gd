@@ -56,6 +56,10 @@ func calculate_velocity(basis:Basis, thrust:float, delta:float)->Vector3:
 	return velocity * delta
 
 
+func get_forward_vector(transform:Transform3D)->Vector3:
+	return _get_directional_vectors(transform.basis).forward
+
+
 func _get_directional_vectors(basis:Basis)->Dictionary:
 	var directional_vectors := {}
 	directional_vectors.forward = -basis.z
