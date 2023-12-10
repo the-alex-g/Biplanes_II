@@ -3,6 +3,7 @@ extends GridContainer
 
 var _plane_handlers := {}
 
+
 func _ready()->void:
 	generate_plane_handlers([0, 1])
 

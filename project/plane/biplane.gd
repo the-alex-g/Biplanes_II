@@ -63,9 +63,16 @@ func destroy(destroyer:int)->void:
 	destroyed.emit(destroyer)
 
 
+func reset()->void:
+	disabled = false
+	physics.reset()
+
+
 func _resolve_collision(collision:KinematicCollision3D)->void:
 	if collision != null:
 		destroy(-1)
+		if collision.get_collider().has_method("destroy"):
+			collision.get_collider().destroy(-1)
 
 
 func _set_player_index(value:int)->void:

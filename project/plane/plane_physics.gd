@@ -7,7 +7,7 @@ const MASS := 700.0
 @export var max_forward_velocity := 45.0
 @export var min_forward_velocity := 25.0
 @export var max_forward_accel := 8.0
-@export var max_turn_velocity := TAU / 4
+@export var max_turn_velocity := TAU / 6
 @export var max_turn_accel := 1.0
 
 var forward_velocity := 0.0
@@ -15,10 +15,16 @@ var yaw_velocity := 0.0
 var pitch_velocity := 0.0
 
 
+func reset()->void:
+	forward_velocity = 0.0
+	yaw_velocity = 0.0
+	pitch_velocity = 0.0
+
+
 func calculate_yaw_velocity(yaw:float, delta:float)->float:
 	if yaw == 0.0 and abs(yaw_velocity) > 0.0:
 		yaw_velocity -= max_turn_accel * delta * sign(yaw_velocity)
-	elif abs(yaw_velocity) < max_turn_velocity:
+	elif yaw != 0.0 and abs(yaw_velocity) < max_turn_velocity:
 		yaw_velocity += max_turn_accel * delta * yaw
 	return yaw_velocity * delta
 

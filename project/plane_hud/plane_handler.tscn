@@ -40,4 +40,5 @@ plane = NodePath("../SubViewportContainer/SubViewport/Biplane")
 layout_mode = 1
 
 [connection signal="destroyed" from="SubViewportContainer/SubViewport/Biplane" to="." method="_on_biplane_destroyed"]
+[connection signal="item_upgraded" from="PlaneUpgradeInterface" to="." method="_on_plane_upgrade_interface_item_upgraded"]
 [connection signal="launched" from="PlaneUpgradeInterface" to="." method="_on_plane_upgrade_interface_launched"]
