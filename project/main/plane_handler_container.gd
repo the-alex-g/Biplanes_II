@@ -4,18 +4,20 @@ extends GridContainer
 var _plane_handlers := {}
 
 
-func _ready()->void:
-	generate_plane_handlers([0, 1])
+func generate_plane_handlers(player_colors:Dictionary)->void:
+	if player_colors.size() == 1:
+		columns = 1
+	else:
+		columns = 2
+	
+	for player_index:int in player_colors.keys():
+		_add_plane_handler(player_index, player_colors[player_index])
 
 
-func generate_plane_handlers(players:Array[int])->void:
-	for player_index:int in players:
-		_add_plane_handler(player_index)
-
-
-func _add_plane_handler(player_index:int)->void:
+func _add_plane_handler(player_index:int, color:Color)->void:
 	var plane_handler : PlaneHandler = load("res://plane_hud/plane_handler.tscn").instantiate()
 	plane_handler.player_index = player_index
+	plane_handler.color = color
 	_plane_handlers[player_index] = plane_handler
 	
 	plane_handler.plane_destroyed.connect(_on_plane_handler_plane_destroyed.bind(player_index))

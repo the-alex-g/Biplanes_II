@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://col0i6mbkhs1y"]
+
+[ext_resource type="Shader" path="res://join_menu/join_banner.gdshader" id="1_giaib"]
+[ext_resource type="Texture2D" uid="uid://dd0ta6a6rydha" path="res://join_menu/join_banner.png" id="1_l4j7q"]
+[ext_resource type="Script" path="res://join_menu/join_banner.gd" id="2_i42d1"]
+[ext_resource type="Texture2D" uid="uid://btiybmnaksky4" path="res://join_menu/checkmark.png" id="4_gddid"]
+[ext_resource type="Texture2D" uid="uid://d3lob1arwm1od" path="res://join_menu/controller_buttons.png" id="5_3jvwg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sin07"]
+shader = ExtResource("1_giaib")
+shader_parameter/color = Vector4(1, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8kpm"]
+atlas = ExtResource("5_3jvwg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suenx"]
+atlas = ExtResource("5_3jvwg")
+region = Rect2(0, 32, 32, 32)
+
+[node name="JoinBanner" type="TextureRect"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_sin07")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_l4j7q")
+stretch_mode = 3
+script = ExtResource("2_i42d1")
+
+[node name="Checkmark" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -66.0
+offset_right = 66.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_gddid")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = 136.0
+offset_right = 34.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="AButton" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_y8kpm")
+stretch_mode = 3
+
+[node name="BButton" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_suenx")
+stretch_mode = 3

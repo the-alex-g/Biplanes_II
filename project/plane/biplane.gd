@@ -13,8 +13,9 @@ const MESH_LENGTH := 10.0 # units
 @export var controls := PlaneControls.new()
 
 var physics := PlanePhysics.new()
-var _can_shoot := true
 var disabled := false
+var color : Color : set = _set_color
+var _can_shoot := true
 
 @onready var _cooldown_timer : Timer = $CooldownTimer
 @onready var _firing_area : FiringArea = $FiringArea
@@ -78,3 +79,10 @@ func _resolve_collision(collision:KinematicCollision3D)->void:
 func _set_player_index(value:int)->void:
 	player_index = value
 	controls.player_index = player_index
+
+
+func _set_color(value:Color)->void:
+	color = value
+	var new_material := StandardMaterial3D.new()
+	new_material.albedo_color = color
+	$MeshInstance3D.material_override = new_material

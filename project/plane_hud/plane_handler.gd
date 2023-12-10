@@ -10,6 +10,7 @@ const OFF_BOARD_POSITION := Vector3(0, -1000, 0)
 @export var min_spawn_height := 50.0
 @export var max_spawn_height := 150.0
 
+var color : Color
 var _kills := {}
 var _kills_this_flight := 0
 var _plane_upgrader := PlaneUpgrader.new()
@@ -21,6 +22,7 @@ var _plane_upgrader := PlaneUpgrader.new()
 func _ready()->void:
 	_respawn_plane()
 	_plane.player_index = player_index
+	_plane.color = color
 	_upgrade_interface.player_index = player_index
 	_plane_upgrader.plane = _plane
 
