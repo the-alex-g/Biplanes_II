@@ -25,7 +25,7 @@ func calculate_velocity(basis:Basis, thrust:float, delta:float)->Vector3:
 	
 	velocity += forward_vector + lift_vector
 	
-	velocity.y = lerp(velocity.y - GRAVITY, -GRAVITY, distance_from_level)
+	velocity.y = lerp(velocity.y - GRAVITY, min(0.0, velocity.y) - GRAVITY, distance_from_level)
 	
 	return velocity * delta
 
