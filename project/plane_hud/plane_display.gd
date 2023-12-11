@@ -6,6 +6,11 @@ extends Control
 @onready var _forward_speed_label : Label = $Readouts/ForwardSpeed
 @onready var _altitude_label : Label = $Readouts/Altitude
 @onready var _kill_banner_container : VBoxContainer = $KillBanners
+@onready var _radar : Radar = $Readouts/Radar
+
+
+func _ready()->void:
+	_radar.plane = plane
 
 
 func _process(_delta:float)->void:
@@ -16,8 +21,12 @@ func _process(_delta:float)->void:
 func update_kills(kills:Dictionary)->void:
 	for banner in _kill_banner_container.get_children():
 		banner.queue_free()
-	for color in kills:
+	for color:Color in kills:
 		_add_kill_banner(color, kills[color])
+
+
+func set_radar_planes(planes:Array[Biplane])->void:
+	_radar.other_planes = planes
 
 
 func _add_kill_banner(color:Color, kills:int)->void:
