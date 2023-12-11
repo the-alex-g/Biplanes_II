@@ -4,6 +4,8 @@ extends Control
 signal plane_destroyed(destroyer_index)
 
 const OFF_BOARD_POSITION := Vector3(0, -1000, 0)
+const CAN_FIRE_COLOR := Color(0.0, 1.0, 0.0, 0.5)
+const CANNOT_FIRE_COLOR := Color(1.0, 0.0, 0.0, 0.5)
 
 @export var player_index := -1
 @export var world_size := Vector3(1000, 500, 1000)
@@ -18,6 +20,7 @@ var _plane_upgrader := PlaneUpgrader.new()
 @onready var _plane : Biplane = $SubViewportContainer/SubViewport/Biplane
 @onready var _upgrade_interface : PlaneUpgradeInterface = $PlaneUpgradeInterface
 @onready var _plane_display : PlaneDisplay = $PlaneDisplay
+@onready var _targeting_ring : TextureRect = $TargetingRing
 
 
 func _ready()->void:
@@ -26,6 +29,10 @@ func _ready()->void:
 	_plane.color = color
 	_upgrade_interface.player_index = player_index
 	_plane_upgrader.plane = _plane
+
+
+func _process(_delta:float)->void:
+	_targeting_ring.self_modulate = CAN_FIRE_COLOR if _plane.firing_area.has_targets() else CANNOT_FIRE_COLOR
 
 
 func _respawn_plane()->void:

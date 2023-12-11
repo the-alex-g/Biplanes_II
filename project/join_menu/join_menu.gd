@@ -5,7 +5,7 @@ signal game_started(player_colors)
 
 const MAX_PLAYERS := 4
 
-@export var player_colors : Array[Color] = [Color.RED, Color.GREEN, Color.BLUE, Color.BLACK, Color.WEB_MAROON, Color.WHITE]
+@export var player_colors : Array[Color] = [Color.RED, Color.SEA_GREEN, Color.BLUE, Color.BLACK, Color.WEB_MAROON, Color.WHITE, Color.NAVY_BLUE]
 @export var accept_button := JOY_BUTTON_A
 @export var back_button := JOY_BUTTON_B
 @export var change_color_left := JOY_BUTTON_LEFT_SHOULDER
@@ -59,7 +59,6 @@ func _input(event:InputEvent)->void:
 
 
 func _join_player(player_index:int)->void:
-	print(_players_joined)
 	_players_joined.append(player_index)
 	_players_to_colors[player_index] = Color(0, 0, 0, 0)
 	_change_color(player_index, 1)
@@ -67,19 +66,16 @@ func _join_player(player_index:int)->void:
 
 
 func _ready_player(player_index:int)->void:
-	print(_players_readied)
 	_players_readied.append(player_index)
 	_join_banners[player_index].readied()
 
 
 func _unready_player(player_index:int)->void:
-	print(_players_readied)
 	_players_readied.erase(player_index)
 	_join_banners[player_index].unreadied()
 
 
 func _remove_player(player_index:int)->void:
-	print(_players_joined)
 	_players_joined.erase(player_index)
 	_used_player_colors.erase(_players_to_colors[player_index])
 	_join_banners[player_index].left()

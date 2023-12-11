@@ -53,7 +53,6 @@ func _shoot()->void:
 
 
 func damage(amount:float, damager:int)->void:
-	print("Biplane ", player_index, " was shot by Biplane ", damager, " and took ", amount, " damage!")
 	health -= amount
 	if health <= 0.0:
 		destroy(damager)
@@ -63,7 +62,6 @@ func destroy(destroyer:int)->void:
 	if disabled:
 		return
 	
-	print("Biplane ", player_index, " was destroyed by Biplane ", destroyer, "!")
 	destroyed.emit(destroyer)
 
 

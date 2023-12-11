@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://lmx4obynadxp"]
+[gd_scene load_steps=6 format=3 uid="uid://lmx4obynadxp"]
 
 [ext_resource type="Script" path="res://plane_hud/plane_handler.gd" id="1_2mbtp"]
 [ext_resource type="PackedScene" uid="uid://bu73yn45j040t" path="res://plane/biplane.tscn" id="2_c4wy8"]
 [ext_resource type="PackedScene" uid="uid://bttnt1jcweusq" path="res://plane_hud/plane_display.tscn" id="2_w8jbv"]
 [ext_resource type="PackedScene" uid="uid://7m20o7ilyhml" path="res://plane_hud/plane_upgrade_interface.tscn" id="4_x2lla"]
+[ext_resource type="Texture2D" uid="uid://c2lu5ilhqa2ps" path="res://plane_hud/FiringRing.png" id="5_6kd1o"]
 
 [node name="PlaneHandler" type="Control"]
 layout_mode = 3
@@ -31,6 +32,22 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Biplane" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_c4wy8")]
+
+[node name="TargetingRing" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -37.0
+offset_right = 40.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_6kd1o")
 
 [node name="PlaneDisplay" parent="." node_paths=PackedStringArray("plane") instance=ExtResource("2_w8jbv")]
 layout_mode = 1

@@ -18,6 +18,10 @@ func shoot(shooter_index:int)->void:
 			body.damage(damage, shooter_index)
 
 
+func has_targets()->bool:
+	return get_overlapping_bodies().size() > 0
+
+
 func _set_distance(value:float)->void:
 	distance = value
 	_update_collision_shape()
