@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://5eg1ytvjdu0r"]
 
-[ext_resource type="Shader" path="res://plane/plane_explosion.gdshader" id="1_rm5tg"]
-[ext_resource type="Script" path="res://plane/plane_explosion.gd" id="2_mm7i8"]
+[ext_resource type="Shader" path="res://plane/wreck/plane_explosion.gdshader" id="1_rm5tg"]
+[ext_resource type="Script" path="res://plane/wreck/plane_explosion.gd" id="2_mm7i8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rcjr8"]
 render_priority = 0

@@ -10,7 +10,7 @@ extends Control
 
 func _process(_delta:float)->void:
 	_forward_speed_label.text = "Forward Speed: " + str(round(plane.physics.forward_velocity))
-	_altitude_label.text = "Altitude: " + str(round(plane.global_position.y))
+	_altitude_label.text = "Altitude: " + str(round(plane.get_distance_from_ground()))
 
 
 func update_kills(kills:Dictionary)->void:

@@ -17,8 +17,9 @@ var disabled := false
 var color : Color : set = _set_color
 var _can_shoot := true
 
+@onready var firing_area : FiringArea = $FiringArea
 @onready var _cooldown_timer : Timer = $CooldownTimer
-@onready var _firing_area : FiringArea = $FiringArea
+@onready var _ground_detector : RayCast3D = $GroundDetector
 
 
 func _ready()->void:
@@ -28,6 +29,8 @@ func _ready()->void:
 func _physics_process(delta:float)->void:
 	if disabled:
 		return
+	
+	_ground_detector.global_rotation = Vector3.ZERO
 	
 	rotate_y(physics.calculate_yaw_velocity(controls.get_yaw_axis(), delta))
 	rotate_object_local(Vector3.RIGHT, physics.calculate_pitch_velocity(controls.get_pitch_axis(), delta))
@@ -40,7 +43,7 @@ func _physics_process(delta:float)->void:
 
 
 func _shoot()->void:
-	_firing_area.shoot(player_index)
+	firing_area.shoot(player_index)
 	_can_shoot = false
 	_cooldown_timer.start(cooldown_time)
 	
@@ -67,6 +70,12 @@ func destroy(destroyer:int)->void:
 func reset()->void:
 	disabled = false
 	physics.reset()
+
+
+func get_distance_from_ground()->float:
+	if _ground_detector.is_colliding():
+		return global_position.y - _ground_detector.get_collision_point().y
+	return 0.0
 
 
 func _resolve_collision(collision:KinematicCollision3D)->void:

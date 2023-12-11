@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d20gdgvkemudw"]
 
 [ext_resource type="ArrayMesh" uid="uid://dybbteaqlpcsl" path="res://plane/Biplane.obj" id="1_06u3p"]
-[ext_resource type="Script" path="res://plane/plane_wreck.gd" id="1_wc6uk"]
+[ext_resource type="Script" path="res://plane/wreck/plane_wreck.gd" id="1_wc6uk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_47jtc"]
 size = Vector3(2, 2, 8)

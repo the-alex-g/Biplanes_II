@@ -56,7 +56,7 @@ func _resolve_collision(collision:KinematicCollision3D)->void:
 
 
 func _explode()->void:
-	var explosion : PlaneExplosion = load("res://plane/plane_explosion.tscn").instantiate()
+	var explosion : PlaneExplosion = load("res://plane/wreck/plane_explosion.tscn").instantiate()
 	get_parent().add_child(explosion)
 	explosion.global_position = global_position
 	queue_free()

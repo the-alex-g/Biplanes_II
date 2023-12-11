@@ -62,7 +62,7 @@ func _on_biplane_destroyed(destroyer_index:int)->void:
 
 
 func _create_plane_wreck(transform:Transform3D)->void:
-	var wreck : PlaneWreck = load("res://plane/plane_wreck.tscn").instantiate()
+	var wreck : PlaneWreck = load("res://plane/wreck/plane_wreck.tscn").instantiate()
 	wreck.global_transform = transform
 	wreck.direction = _plane.physics.get_forward_vector(transform)
 	wreck.color = color
