@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu73yn45j040t"]
+[gd_scene load_steps=9 format=3 uid="uid://bu73yn45j040t"]
 
 [ext_resource type="Script" path="res://plane/biplane.gd" id="1_nhn8v"]
 [ext_resource type="ArrayMesh" uid="uid://dybbteaqlpcsl" path="res://plane/Biplane.obj" id="2_3d0us"]
+[ext_resource type="Shader" path="res://plane/biplane.gdshader" id="2_q1gni"]
 [ext_resource type="Material" uid="uid://kok4miyt12ps" path="res://plane/metal_material.tres" id="3_lxlua"]
 [ext_resource type="PackedScene" uid="uid://dlw40tgo686yg" path="res://plane/firing_area.tscn" id="4_fh2ls"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t6l5c"]
+render_priority = 0
+shader = ExtResource("2_q1gni")
+shader_parameter/body_color = Vector3(0, 0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dm4nn"]
 material = ExtResource("3_lxlua")
@@ -19,6 +25,7 @@ script = ExtResource("1_nhn8v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 1)
+material_override = SubResource("ShaderMaterial_t6l5c")
 mesh = ExtResource("2_3d0us")
 
 [node name="GunMesh" type="MeshInstance3D" parent="MeshInstance3D"]

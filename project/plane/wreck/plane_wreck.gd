@@ -16,9 +16,10 @@ var wreck_velocity := 0.0
 
 
 func _ready()->void:
-	var new_material := StandardMaterial3D.new()
-	new_material.albedo_color = color
-	_mesh.material_override = new_material
+	var new_material := ShaderMaterial.new()
+	new_material.shader = load("res://plane/biplane.gdshader")
+	new_material.set_shader_parameter("body_color", color)
+	$MeshInstance3D.material_override = new_material
 
 
 func _physics_process(delta:float)->void:

@@ -90,6 +90,7 @@ func _set_player_index(value:int)->void:
 
 func _set_color(value:Color)->void:
 	color = value
-	var new_material := StandardMaterial3D.new()
-	new_material.albedo_color = color
+	var new_material := ShaderMaterial.new()
+	new_material.shader = load("res://plane/biplane.gdshader")
+	new_material.set_shader_parameter("body_color", color)
 	$MeshInstance3D.material_override = new_material
