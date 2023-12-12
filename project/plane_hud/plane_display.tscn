@@ -27,7 +27,6 @@ text = "Altitude: "
 
 [node name="Radar" parent="Readouts" instance=ExtResource("2_jo1y4")]
 layout_mode = 2
-radius = 50.0
 
 [node name="KillBanners" type="VBoxContainer" parent="."]
 layout_mode = 1

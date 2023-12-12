@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://7m20o7ilyhml"]
+[gd_scene load_steps=9 format=3 uid="uid://7m20o7ilyhml"]
 
 [ext_resource type="Script" path="res://plane_hud/plane_upgrade_interface.gd" id="1_tkxvx"]
 [ext_resource type="Script" path="res://plane_hud/upgradable_item.gd" id="2_6nk7l"]
@@ -6,8 +6,44 @@
 [sub_resource type="Resource" id="Resource_hetfw"]
 script = ExtResource("2_6nk7l")
 name = "Max Speed"
-starting_cost = 0
-cost_per_level = 10
+starting_cost = 1
+cost_per_level = 5
+upgrade_field = 0
+
+[sub_resource type="Resource" id="Resource_p7h30"]
+script = ExtResource("2_6nk7l")
+name = "Min Speed"
+starting_cost = 1
+cost_per_level = 5
+upgrade_field = 1
+
+[sub_resource type="Resource" id="Resource_k1p77"]
+script = ExtResource("2_6nk7l")
+name = "Forward Acceleration"
+starting_cost = 1
+cost_per_level = 5
+upgrade_field = 2
+
+[sub_resource type="Resource" id="Resource_sm6i8"]
+script = ExtResource("2_6nk7l")
+name = "Maneuverablity"
+starting_cost = 1
+cost_per_level = 5
+upgrade_field = 3
+
+[sub_resource type="Resource" id="Resource_8vekv"]
+script = ExtResource("2_6nk7l")
+name = "Turning Speed"
+starting_cost = 1
+cost_per_level = 5
+upgrade_field = 4
+
+[sub_resource type="Resource" id="Resource_kxo7j"]
+script = ExtResource("2_6nk7l")
+name = "Gun Range"
+starting_cost = 1
+cost_per_level = 9
+upgrade_field = 5
 
 [node name="PlaneUpgradeInterface" type="Control"]
 layout_mode = 3
@@ -17,7 +53,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tkxvx")
-upgrades = Array[ExtResource("2_6nk7l")]([SubResource("Resource_hetfw")])
+upgrades = Array[ExtResource("2_6nk7l")]([SubResource("Resource_hetfw"), SubResource("Resource_p7h30"), SubResource("Resource_k1p77"), SubResource("Resource_sm6i8"), SubResource("Resource_8vekv"), SubResource("Resource_kxo7j")])
 
 [node name="PanelContainer" type="Panel" parent="."]
 layout_mode = 1

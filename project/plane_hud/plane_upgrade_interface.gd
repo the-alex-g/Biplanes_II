@@ -2,7 +2,7 @@ class_name PlaneUpgradeInterface
 extends Control
 
 signal launched
-signal item_upgraded(item_name)
+signal item_upgraded(item_field)
 
 @export var player_index := -1
 @export var launch_button := JOY_BUTTON_START
@@ -56,7 +56,7 @@ func _upgrade_selected_item()->void:
 			_resources -= item_cost
 			item.upgrade()
 			_generate_item_list(item_index)
-			item_upgraded.emit(item.name)
+			item_upgraded.emit(item.upgrade_field)
 			_resources_label.text = str(_resources)
 
 

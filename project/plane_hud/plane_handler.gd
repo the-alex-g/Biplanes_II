@@ -86,5 +86,5 @@ func _on_plane_upgrade_interface_launched()->void:
 	_respawn_plane()
 
 
-func _on_plane_upgrade_interface_item_upgraded(item_name:String)->void:
-	_plane_upgrader.upgrade(item_name)
+func _on_plane_upgrade_interface_item_upgraded(item_field:UpgradableItem.UpgradeField)->void:
+	_plane_upgrader.upgrade(item_field)
