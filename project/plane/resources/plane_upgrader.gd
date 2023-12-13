@@ -18,6 +18,8 @@ func upgrade(item_field:UpgradableItem.UpgradeField)->void:
 			_upgrade_max_turn_speed()
 		UpgradableItem.UpgradeField.RANGE:
 			_upgrade_range()
+		UpgradableItem.UpgradeField.RELOAD:
+			_upgrade_reload()
 
 
 func _upgrade_max_speed()->void:
@@ -42,3 +44,7 @@ func _upgrade_max_turn_speed()->void:
 
 func _upgrade_range()->void:
 	plane.firing_area.distance += 10
+
+
+func _upgrade_reload()->void:
+	plane.cooldown_time *= 0.9

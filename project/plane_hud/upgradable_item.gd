@@ -1,7 +1,7 @@
 class_name UpgradableItem
 extends Resource
 
-enum UpgradeField {MAX_SPEED, MIN_SPEED, ACCEL, TURN_ACCEL, MAX_TURN_SPEED, RANGE}
+enum UpgradeField {MAX_SPEED, MIN_SPEED, ACCEL, TURN_ACCEL, MAX_TURN_SPEED, RANGE, RELOAD}
 
 @export var name := ""
 @export var starting_cost := 1

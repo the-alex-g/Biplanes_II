@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7m20o7ilyhml"]
+[gd_scene load_steps=10 format=3 uid="uid://7m20o7ilyhml"]
 
 [ext_resource type="Script" path="res://plane_hud/plane_upgrade_interface.gd" id="1_tkxvx"]
 [ext_resource type="Script" path="res://plane_hud/upgradable_item.gd" id="2_6nk7l"]
@@ -45,6 +45,13 @@ starting_cost = 1
 cost_per_level = 9
 upgrade_field = 5
 
+[sub_resource type="Resource" id="Resource_xe0o5"]
+script = ExtResource("2_6nk7l")
+name = "Reload"
+starting_cost = 1
+cost_per_level = 5
+upgrade_field = 6
+
 [node name="PlaneUpgradeInterface" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -53,7 +60,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tkxvx")
-upgrades = Array[ExtResource("2_6nk7l")]([SubResource("Resource_hetfw"), SubResource("Resource_p7h30"), SubResource("Resource_k1p77"), SubResource("Resource_sm6i8"), SubResource("Resource_8vekv"), SubResource("Resource_kxo7j")])
+upgrades = Array[ExtResource("2_6nk7l")]([SubResource("Resource_hetfw"), SubResource("Resource_p7h30"), SubResource("Resource_k1p77"), SubResource("Resource_sm6i8"), SubResource("Resource_8vekv"), SubResource("Resource_kxo7j"), SubResource("Resource_xe0o5")])
 
 [node name="PanelContainer" type="Panel" parent="."]
 layout_mode = 1
