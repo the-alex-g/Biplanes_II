@@ -24,12 +24,12 @@ func has_targets()->bool:
 
 func _set_distance(value:float)->void:
 	distance = value
-	_update_collision_shape()
+	call_deferred("_update_collision_shape")
 
 
 func _set_radius(value:float)->void:
 	radius = value
-	_update_collision_shape()
+	call_deferred("_update_collision_shape")
 
 
 func _update_collision_shape()->void:

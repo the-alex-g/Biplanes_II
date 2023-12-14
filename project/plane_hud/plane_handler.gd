@@ -35,7 +35,7 @@ func _process(_delta:float)->void:
 	_targeting_ring.self_modulate = CAN_FIRE_COLOR if plane.firing_area.has_targets() else CANNOT_FIRE_COLOR
 
 
-func set_radar_planes(planes:Array[Biplane])->void:
+func set_radar_planes(planes:Array[PlaneRoot])->void:
 	_plane_display.set_radar_planes(planes)
 
 

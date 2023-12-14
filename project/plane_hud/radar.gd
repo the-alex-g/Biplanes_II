@@ -12,7 +12,7 @@ extends Control
 @export var dot_radius := 3.0
 
 var plane : Biplane
-var other_planes : Array[Biplane]
+var other_planes : Array[PlaneRoot]
 
 @onready var _circle_center := Vector2.ONE * radius
 
@@ -53,7 +53,7 @@ func _draw_dots()->void:
 
 func _get_plane_positions()->PackedVector2Array:
 	var positions : PackedVector2Array = []
-	for other_plane:Biplane in other_planes:
+	for other_plane:PlaneRoot in other_planes:
 		if not other_plane.disabled:
 			positions.append(Vector2(other_plane.global_position.x, other_plane.global_position.z))
 	return positions

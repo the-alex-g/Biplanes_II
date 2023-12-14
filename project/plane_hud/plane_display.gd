@@ -25,7 +25,7 @@ func update_kills(kills:Dictionary)->void:
 		_add_kill_banner(color, kills[color])
 
 
-func set_radar_planes(planes:Array[Biplane])->void:
+func set_radar_planes(planes:Array[PlaneRoot])->void:
 	_radar.other_planes = planes
 
 

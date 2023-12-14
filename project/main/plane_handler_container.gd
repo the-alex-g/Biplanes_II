@@ -21,6 +21,7 @@ func generate_plane_handlers(player_colors:Dictionary)->void:
 func _add_AI_plane_handler()->void:
 	var plane_handler := AIPlaneHandler.new()
 	_plane_handlers[-1] = plane_handler
+	plane_handler.plane_destroyed.connect(_on_plane_handler_plane_destroyed.bind(-1))
 	add_child(plane_handler)
 
 
@@ -41,9 +42,10 @@ func _on_plane_handler_plane_destroyed(destroyer_index:int, destroyed_plane_inde
 
 
 func _sync_radar()->void:
-	for plane_handler:PlaneHandler in _plane_handlers.values():
-		var other_planes : Array[Biplane] = []
-		for other_plane_handler:PlaneHandler in _plane_handlers.values():
+	for plane_handler in _plane_handlers.values():
+		var other_planes : Array[PlaneRoot] = []
+		for other_plane_handler in _plane_handlers.values():
 			if other_plane_handler != plane_handler:
 				other_planes.append(other_plane_handler.plane)
-		plane_handler.set_radar_planes(other_planes)
+		if plane_handler is PlaneHandler:
+			plane_handler.set_radar_planes(other_planes)

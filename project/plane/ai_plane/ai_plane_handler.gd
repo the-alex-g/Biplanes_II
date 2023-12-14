@@ -9,11 +9,14 @@ const OFF_BOARD_POSITION := Vector3(0, -1000, 0)
 @export var min_spawn_height := 50.0
 @export var max_spawn_height := 150.0
 
+var color : Color : get = _get_color
+
 @onready var plane : AIPlane
 
 
 func _ready()->void:
 	plane = preload("res://plane/ai_plane/ai_plane.tscn").instantiate()
+	plane.destroyed.connect(_on_biplane_destroyed)
 	add_child(plane)
 	_respawn_plane()
 
@@ -51,3 +54,7 @@ func _create_plane_wreck(transform:Transform3D)->void:
 	wreck.color = plane.COLOR
 	wreck.wreck_velocity = plane.physics.forward_velocity
 	add_child(wreck)
+
+
+func _get_color()->Color:
+	return plane.color
