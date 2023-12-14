@@ -10,10 +10,18 @@ func generate_plane_handlers(player_colors:Dictionary)->void:
 	else:
 		columns = 2
 	
+	_add_AI_plane_handler()
+	
 	for player_index:int in player_colors.keys():
 		_add_plane_handler(player_index, player_colors[player_index])
 	
 	_sync_radar()
+
+
+func _add_AI_plane_handler()->void:
+	var plane_handler := AIPlaneHandler.new()
+	_plane_handlers[-1] = plane_handler
+	add_child(plane_handler)
 
 
 func _add_plane_handler(player_index:int, color:Color)->void:
