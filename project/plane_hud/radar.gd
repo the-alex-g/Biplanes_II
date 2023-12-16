@@ -23,7 +23,8 @@ func _process(_delta:float)->void:
 
 func _draw()->void:
 	_draw_radar_disk()
-	_draw_dots()
+	if not plane.concealed:
+		_draw_dots()
 	_draw_pointer()
 
 
@@ -54,7 +55,7 @@ func _draw_dots()->void:
 func _get_plane_positions()->PackedVector2Array:
 	var positions : PackedVector2Array = []
 	for other_plane:PlaneRoot in other_planes:
-		if not other_plane.disabled:
+		if not other_plane.disabled and not other_plane.concealed:
 			positions.append(Vector2(other_plane.global_position.x, other_plane.global_position.z))
 	return positions
 

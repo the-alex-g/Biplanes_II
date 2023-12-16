@@ -14,7 +14,6 @@ material = SubResource("ShaderMaterial_rcjr8")
 emitting = false
 amount = 64
 one_shot = true
-preprocess = 0.1
 explosiveness = 0.5
 lifetime_randomness = 0.5
 mesh = SubResource("BoxMesh_vxs7u")

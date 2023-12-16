@@ -13,6 +13,8 @@ const MESH_LENGTH := 10.0 # units
 var physics := PlanePhysics.new()
 var disabled := false
 var color : Color : set = _set_color
+var concealed : bool : get = _get_concealed
+var _concealments := []
 var _can_shoot := true
 
 @onready var firing_area : FiringArea = $FiringArea
@@ -65,3 +67,15 @@ func _set_color(value:Color)->void:
 	new_material.shader = load("res://plane/biplane.gdshader")
 	new_material.set_shader_parameter("body_color", color)
 	$MeshInstance3D.material_override = new_material
+
+
+func _get_concealed()->bool:
+	return _concealments.size() > 0
+
+
+func conceal(by:Node)->void:
+	_concealments.append(by)
+
+
+func reveal(by:Node)->void:
+	_concealments.erase(by)

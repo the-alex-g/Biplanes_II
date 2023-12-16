@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5molt58pqgll"]
+
+[ext_resource type="Script" path="res://main/cloud.gd" id="1_558wk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cvd6v"]
+height = 65.0
+radius = 90.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_yd4ps"]
+
+[sub_resource type="Curve" id="Curve_jwaa8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.724719, 0.846154), 0.0, 0.0, 0, 0, Vector2(1, 0.285714), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Cloud" type="Area3D" groups=["Cloud"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_558wk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_cvd6v")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 128
+lifetime = 2.0
+speed_scale = 0.1
+randomness = 0.2
+lifetime_randomness = 0.5
+mesh = SubResource("SphereMesh_yd4ps")
+direction = Vector3(0, 0, -1)
+spread = 180.0
+flatness = 0.8
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 90.0
+scale_amount_min = 50.0
+scale_amount_max = 70.0
+scale_amount_curve = SubResource("Curve_jwaa8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="finished" from="CPUParticles3D" to="." method="_on_cpu_particles_3d_finished"]

@@ -22,6 +22,13 @@ func has_targets()->bool:
 	return get_overlapping_bodies().size() > 0
 
 
+func has_visible_targets()->bool:
+	for body in get_overlapping_bodies():
+		if body is PlaneRoot and not body.concealed:
+			return true
+	return false
+
+
 func _set_distance(value:float)->void:
 	distance = value
 	call_deferred("_update_collision_shape")
